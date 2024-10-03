@@ -4,6 +4,7 @@ import {
   ColumnStructure,
   CreateColumnsStructureArgs,
   CreateColumnsStructureResult,
+  IsItemVisible,
 } from './types';
 
 export const calculateColumnHeight: CalculateColumnHeight = ({
@@ -42,4 +43,17 @@ export const createColumnsStructure = <T extends MasonryItem>({
   });
 
   return columns;
+};
+
+export const isItemVisible: IsItemVisible = ({
+  itemTop,
+  itemHeight,
+  containerHeight,
+  containerScrollTop,
+}) => {
+  const itemBottom = itemTop + itemHeight;
+  const viewportTop = containerScrollTop;
+  const viewportBottom = containerScrollTop + containerHeight;
+
+  return itemBottom > viewportTop && itemTop < viewportBottom;
 };

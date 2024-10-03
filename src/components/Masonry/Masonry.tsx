@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { useMergedRef } from '../../hooks/useMergedRef';
 import { useMasonryGridUpdate } from './hooks';
-import { createColumnsStructure } from './helpers';
+import { createColumnsStructure, isItemVisible } from './helpers';
 import { Column, Container, MasonryItemWrapper } from './styles';
 import {
   PAGE_VARIANTS,
@@ -23,7 +23,7 @@ export const Masonry = <T extends MasonryItem>({
   columnsCount = DEFAULT_COLUMNS_COUNT,
   wrapperRef,
 }: MasonryProps<T>): ReactNode => {
-  const [scrollTop, setScrollTop] = useState(0);
+  const [containerScrollTop, setScrollTop] = useState(0);
   const [columnWidth, setColumnWidth] = useState(300);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -68,12 +68,12 @@ export const Masonry = <T extends MasonryItem>({
       {columns.map((column, columnIndex) => (
         <Column key={columnIndex} style={{ height: column.height }}>
           {column.items.map(({ item, top, height }, index) => {
-            const itemBottom = top + height;
-            const viewportTop = scrollTop;
-            const viewportBottom = scrollTop + containerHeight;
-
-            const isVisible = itemBottom > viewportTop && top < viewportBottom;
-
+            const isVisible = isItemVisible({
+              itemTop: top,
+              itemHeight: height,
+              containerHeight,
+              containerScrollTop,
+            });
             return (
               <Fragment key={`${item.id}_${index + 1}`}>
                 {isVisible && (

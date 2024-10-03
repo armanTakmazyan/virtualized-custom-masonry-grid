@@ -26,3 +26,12 @@ export interface ColumnStructure<T extends MasonryItem> {
 
 export type CreateColumnsStructureResult<T extends MasonryItem> =
   ColumnStructure<T>[];
+
+export interface IsItemVisibleArgs {
+  itemTop: number;
+  itemHeight: number;
+  containerHeight: number;
+  containerScrollTop: number;
+}
+
+export type IsItemVisible = (args: IsItemVisibleArgs) => boolean;
