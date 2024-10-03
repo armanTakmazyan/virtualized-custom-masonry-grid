@@ -1,0 +1,1 @@
+export { SearchedPexelsPhotos } from './SearchedPexelsPhotos';
