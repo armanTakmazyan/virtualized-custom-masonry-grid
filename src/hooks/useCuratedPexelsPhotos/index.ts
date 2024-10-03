@@ -1,0 +1,1 @@
+export { useCuratedPexelsPhotos } from './useCuratedPexelsPhotos';
