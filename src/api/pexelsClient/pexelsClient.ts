@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-const pexelsApiKey = import.meta.env.VITE_PEXELS_API_KEY;
+import { pexelsApiKey, pexelsClientBaseUrl } from './constants';
 
 export const pexelsClient = axios.create({
-  baseURL: 'https://api.pexels.com/v1',
+  baseURL: pexelsClientBaseUrl,
   headers: {
     Authorization: pexelsApiKey,
   },
