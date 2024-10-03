@@ -23,7 +23,7 @@ export const Masonry = <T extends MasonryItem>({
   columnsCount = DEFAULT_COLUMNS_COUNT,
   wrapperRef,
 }: MasonryProps<T>): ReactNode => {
-  const [containerScrollTop, setScrollTop] = useState(0);
+  const [containerScrollTop, setContainerScrollTop] = useState(0);
   const [columnWidth, setColumnWidth] = useState(300);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -37,7 +37,7 @@ export const Masonry = <T extends MasonryItem>({
     const newColumnWidth = Math.floor(containerWidth / columnsCount);
 
     setColumnWidth(newColumnWidth);
-    setScrollTop(containerRef.current.scrollTop);
+    setContainerScrollTop(containerRef.current.scrollTop);
     setContainerHeight(containerRef.current.offsetHeight);
   }, [columnsCount]);
 
