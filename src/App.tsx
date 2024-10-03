@@ -3,13 +3,13 @@ import { Header } from './components/Header';
 import { Layout } from './components/Masonry/styles';
 import './App.css';
 
-function App() {
+const App: React.FC<{}> = () => {
   return (
     <Layout>
       <Header />
       <Outlet />
     </Layout>
   );
-}
+};
 
 export default App;

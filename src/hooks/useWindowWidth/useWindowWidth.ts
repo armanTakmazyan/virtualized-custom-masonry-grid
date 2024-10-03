@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
+import { UseWindowWidth } from './types';
 
-export const useWindowWidth = () => {
+export const useWindowWidth: UseWindowWidth = () => {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0,
   );

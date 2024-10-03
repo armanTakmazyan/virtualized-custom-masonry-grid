@@ -8,7 +8,7 @@ import { ImageDetailsSpinner } from '../../components/ImageDetails/ImageDetailsS
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { NoDataMessage } from '../../components/NoDataMessage';
 
-export const CuratedPexelsPhotos = () => {
+export const CuratedPexelsPhotos: React.FC<{}> = () => {
   const masonryContainerRef = useRef<HTMLDivElement>(null);
 
   const {

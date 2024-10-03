@@ -9,7 +9,7 @@ import {
 import { ImageDetailsProps } from './types';
 
 export const ImageDetails: React.FC<ImageDetailsProps> = ({
-  image: { id, photographer, photographer_url, src: { large2x } = {} } = {},
+  image: { id, photographer, photographer_url, src: { large2x } = {} },
 }) => {
   return (
     <Container>

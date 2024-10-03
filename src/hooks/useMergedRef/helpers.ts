@@ -1,10 +1,11 @@
+import { MutableRefObject } from 'react';
 import { AssignRefArgs, MergeRefsArgs } from './types';
 
 export const assignRef = <T>({ ref, value }: AssignRefArgs<T>) => {
   if (typeof ref === 'function') {
     ref(value);
   } else if (typeof ref === 'object' && ref !== null && 'current' in ref) {
-    (ref as React.MutableRefObject<T>).current = value;
+    (ref as MutableRefObject<T>).current = value;
   }
 };
 

@@ -5,7 +5,7 @@ import { ImageDetailsSpinner } from '../../components/ImageDetails/ImageDetailsS
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { NoDataMessage } from '../../components/NoDataMessage';
 
-function Image() {
+export const ImageDetailsPage: React.FC<{}> = () => {
   const { id } = useParams();
   const { loading, error, data } = usePexelsPhotoDetails({ id: id ?? '' });
 
@@ -18,6 +18,4 @@ function Image() {
   ) : (
     <NoDataMessage />
   );
-}
-
-export default Image;
+};

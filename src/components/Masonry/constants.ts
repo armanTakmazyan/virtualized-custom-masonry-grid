@@ -1,6 +1,6 @@
 export const DEFAULT_COLUMNS_COUNT = 3;
 
-export const pageVariants = {
+export const PAGE_VARIANTS = {
   initial: {
     x: 100,
     opacity: 0,
@@ -15,7 +15,7 @@ export const pageVariants = {
   },
 } as const;
 
-export const pageTransition = {
+export const PAGE_TRANSITION = {
   ease: 'easeInOut',
   duration: 0.5,
 } as const;

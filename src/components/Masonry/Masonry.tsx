@@ -1,5 +1,6 @@
 import {
   Fragment,
+  ReactNode,
   useCallback,
   useEffect,
   useMemo,
@@ -9,9 +10,9 @@ import {
 import { useMergedRef } from '../../hooks/useMergedRef';
 import { Column, Container } from './styles';
 import {
+  PAGE_VARIANTS,
+  PAGE_TRANSITION,
   DEFAULT_COLUMNS_COUNT,
-  pageTransition,
-  pageVariants,
 } from './constants';
 import { MasonryItem, MasonryProps } from './types';
 
@@ -24,7 +25,7 @@ export const Masonry = <T extends MasonryItem>({
   renderItem,
   columnsCount = DEFAULT_COLUMNS_COUNT,
   wrapperRef,
-}: MasonryProps<T>) => {
+}: MasonryProps<T>): ReactNode => {
   const [scrollTop, setScrollTop] = useState(0);
   const [columnWidth, setColumnWidth] = useState(300);
   const [containerHeight, setContaineHeight] = useState(0);
@@ -98,8 +99,8 @@ export const Masonry = <T extends MasonryItem>({
       initial="initial"
       animate="in"
       exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
+      variants={PAGE_VARIANTS}
+      transition={PAGE_TRANSITION}
     >
       {columns.map((column, columnIndex) => (
         <Column

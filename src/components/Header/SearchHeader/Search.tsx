@@ -8,7 +8,7 @@ import {
 } from './styles';
 import { HandleSubmit } from './types';
 
-export const SearchHeader = () => {
+export const SearchHeader: React.FC<{}> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState(
     searchParams.get('search') ?? '',

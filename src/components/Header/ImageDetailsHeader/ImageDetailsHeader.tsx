@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, BackButton, Title } from './styles';
 
-export const ImageDetailsHeader = () => {
+export const ImageDetailsHeader: React.FC<{}> = () => {
   const location = useLocation();
   const navigate = useNavigate();
 

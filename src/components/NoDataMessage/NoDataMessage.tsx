@@ -1,6 +1,7 @@
 import { Message, NoDataWrapper } from './styles';
+import { NoDataMessageProps } from './types';
 
-export const NoDataMessage = ({
+export const NoDataMessage: React.FC<NoDataMessageProps> = ({
   message = 'No data available for this resource.',
 }) => {
   return (

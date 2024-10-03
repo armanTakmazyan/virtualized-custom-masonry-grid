@@ -9,7 +9,7 @@ import { ImageDetailsSpinner } from '../../components/ImageDetails/ImageDetailsS
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { NoDataMessage } from '../../components/NoDataMessage';
 
-export const SearchedPexelsPhotos = () => {
+export const SearchedPexelsPhotos: React.FC<{}> = () => {
   const [searchParams] = useSearchParams();
 
   const masonryContainerRef = useRef<HTMLDivElement>(null);

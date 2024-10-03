@@ -1,3 +1,3 @@
 import { SpinnerWrapper } from './styles';
 
-export const Spinner = () => <SpinnerWrapper />;
+export const Spinner: React.FC<{}> = () => <SpinnerWrapper />;
