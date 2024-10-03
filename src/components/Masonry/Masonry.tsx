@@ -2,23 +2,20 @@ import {
   Fragment,
   ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
 import { useMergedRef } from '../../hooks/useMergedRef';
-import { Column, Container } from './styles';
+import { useMasonryGridUpdate } from './hooks';
+import { createColumnsStructure } from './helpers';
+import { Column, Container, MasonryItemWrapper } from './styles';
 import {
   PAGE_VARIANTS,
   PAGE_TRANSITION,
   DEFAULT_COLUMNS_COUNT,
 } from './constants';
 import { MasonryItem, MasonryProps } from './types';
-
-const getItemHeight = (item: any, columnWidth: number): number => {
-  return (item.height / item.width) * columnWidth;
-};
 
 export const Masonry = <T extends MasonryItem>({
   items,
@@ -28,7 +25,7 @@ export const Masonry = <T extends MasonryItem>({
 }: MasonryProps<T>): ReactNode => {
   const [scrollTop, setScrollTop] = useState(0);
   const [columnWidth, setColumnWidth] = useState(300);
-  const [containerHeight, setContaineHeight] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRef(wrapperRef, containerRef);
@@ -41,57 +38,23 @@ export const Masonry = <T extends MasonryItem>({
 
     setColumnWidth(newColumnWidth);
     setScrollTop(containerRef.current.scrollTop);
-    setContaineHeight(containerRef.current.offsetHeight);
+    setContainerHeight(containerRef.current.offsetHeight);
   }, [columnsCount]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  const columns = useMemo(
+    () =>
+      createColumnsStructure({
+        columnsCount,
+        columnWidth,
+        items,
+      }),
+    [items, columnsCount, columnWidth],
+  );
 
-    const handleResizeOrScroll = () => {
-      requestAnimationFrame(updateLayout);
-    };
-
-    container.addEventListener('scroll', handleResizeOrScroll, {
-      passive: true,
-    });
-    window.addEventListener('resize', handleResizeOrScroll);
-
-    updateLayout(); // Initialize on mount
-
-    return () => {
-      container.removeEventListener('scroll', handleResizeOrScroll);
-      window.removeEventListener('resize', handleResizeOrScroll);
-    };
-  }, [updateLayout]);
-
-  const columns = useMemo(() => {
-    const cols: Array<{
-      items: { item: T; top: number; height: number }[];
-      height: number;
-    }> = Array.from({ length: columnsCount }, () => ({
-      items: [],
-      height: 0,
-    }));
-    const columnsHeights = Array(columnsCount).fill(0);
-
-    items.forEach((item) => {
-      const minHeightIndex = columnsHeights.indexOf(
-        Math.min(...columnsHeights),
-      );
-      const itemHeight = getItemHeight(item, columnWidth);
-      const itemTop = columnsHeights[minHeightIndex];
-      cols[minHeightIndex].items.push({
-        item,
-        top: itemTop,
-        height: itemHeight,
-      });
-      columnsHeights[minHeightIndex] += itemHeight;
-      cols[minHeightIndex].height = columnsHeights[minHeightIndex];
-    });
-
-    return cols;
-  }, [items, columnsCount, columnWidth]);
+  useMasonryGridUpdate({
+    containerRef,
+    updateLayout,
+  });
 
   return (
     <Container
@@ -103,10 +66,7 @@ export const Masonry = <T extends MasonryItem>({
       transition={PAGE_TRANSITION}
     >
       {columns.map((column, columnIndex) => (
-        <Column
-          key={columnIndex}
-          style={{ height: column.height, position: 'relative' }}
-        >
+        <Column key={columnIndex} style={{ height: column.height }}>
           {column.items.map(({ item, top, height }, index) => {
             const itemBottom = top + height;
             const viewportTop = scrollTop;
@@ -114,16 +74,18 @@ export const Masonry = <T extends MasonryItem>({
 
             const isVisible = itemBottom > viewportTop && top < viewportBottom;
 
-            const itemStyle = {
-              position: 'absolute' as const,
-              top,
-              width: '100%',
-              height,
-            };
-
             return (
               <Fragment key={`${item.id}_${index + 1}`}>
-                {isVisible && <div style={itemStyle}>{renderItem(item)}</div>}
+                {isVisible && (
+                  <MasonryItemWrapper
+                    style={{
+                      top,
+                      height,
+                    }}
+                  >
+                    {renderItem(item)}
+                  </MasonryItemWrapper>
+                )}
               </Fragment>
             );
           })}

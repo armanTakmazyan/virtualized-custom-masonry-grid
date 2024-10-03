@@ -23,10 +23,15 @@ export const Container = styled(motion.div)`
 
 export const Column = styled.div`
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-content: stretch;
-  flex: 1;
-  width: 0;
+  position: relative;
+`;
+
+export const MasonryItemWrapper = styled.div`
+  position: absolute;
+  width: 100%;
 `;
