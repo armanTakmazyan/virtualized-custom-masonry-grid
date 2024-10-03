@@ -1,5 +1,5 @@
 import { pexelsClient } from '../pexelsClient';
-import { DEFAULT_PAGE, DEFAULT_PER_PAGE } from './constants';
+import { DEFAULT_PAGE, DEFAULT_PER_PAGE, PEXELS_API_ROUTES } from './constants';
 import {
   PexelsPhoto,
   PexelsResponse,
@@ -12,9 +12,12 @@ export const fetchPexelsCuratedPhotos: FetchPexelsCuratedPhotos = async ({
   page = DEFAULT_PAGE,
   perPage = DEFAULT_PER_PAGE,
 }) => {
-  const response = await pexelsClient.get<PexelsResponse>('/curated', {
-    params: { page, per_page: perPage },
-  });
+  const response = await pexelsClient.get<PexelsResponse>(
+    PEXELS_API_ROUTES.CURATED,
+    {
+      params: { page, per_page: perPage },
+    },
+  );
   return response.data;
 };
 
@@ -23,15 +26,20 @@ export const searchPexelsPhotos: SearchPexelsPhotos = async ({
   page = DEFAULT_PAGE,
   perPage = DEFAULT_PER_PAGE,
 }) => {
-  const response = await pexelsClient.get<PexelsResponse>('/search', {
-    params: { query, page, per_page: perPage },
-  });
+  const response = await pexelsClient.get<PexelsResponse>(
+    PEXELS_API_ROUTES.SEARCH,
+    {
+      params: { query, page, per_page: perPage },
+    },
+  );
   return response.data;
 };
 
 export const fetchPexelsPhotoDetailsById: FetchPexelsPhotoDetailsById = async ({
   id,
 }) => {
-  const response = await pexelsClient.get<PexelsPhoto>(`/photos/${id}`);
+  const response = await pexelsClient.get<PexelsPhoto>(
+    PEXELS_API_ROUTES.PHOTO_DETAILS(id),
+  );
   return response.data;
 };
