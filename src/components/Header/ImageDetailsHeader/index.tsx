@@ -1,0 +1,1 @@
+export { ImageDetailsHeader } from './ImageDetailsHeader';
