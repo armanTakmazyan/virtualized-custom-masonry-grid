@@ -21,7 +21,7 @@ describe('useBreakpointValue', () => {
     };
     const defaultValue = 'default';
 
-    mocks.useWindowWidth.mockReturnValue(500);
+    mocks.useWindowWidth.mockReturnValueOnce(500);
 
     const { result } = renderHook(() =>
       useBreakpointValue({ breakpoints, defaultValue }),
@@ -38,7 +38,7 @@ describe('useBreakpointValue', () => {
     };
     const defaultValue = 'default';
 
-    mocks.useWindowWidth.mockReturnValue(700);
+    mocks.useWindowWidth.mockReturnValueOnce(700);
 
     const { result } = renderHook(() =>
       useBreakpointValue({ breakpoints, defaultValue }),
@@ -55,7 +55,7 @@ describe('useBreakpointValue', () => {
     };
     const defaultValue = 'default';
 
-    mocks.useWindowWidth.mockReturnValue(1300);
+    mocks.useWindowWidth.mockReturnValueOnce(1300);
 
     const { result } = renderHook(() =>
       useBreakpointValue({ breakpoints, defaultValue }),

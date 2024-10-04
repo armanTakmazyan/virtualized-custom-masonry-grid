@@ -33,10 +33,6 @@ const mockData: PexelsResponse = {
 } as const;
 
 describe('Pexels API functions', () => {
-  afterEach(() => {
-    vi.resetAllMocks();
-  });
-
   describe('fetchPexelsCuratedPhotos', () => {
     it('should fetch curated photos with default params', async () => {
       mocks.pexelsClient.get.mockReturnValueOnce({ data: mockData });

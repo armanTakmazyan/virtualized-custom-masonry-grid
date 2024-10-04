@@ -66,7 +66,11 @@ export const Masonry = <T extends MasonryItem>({
       transition={PAGE_TRANSITION}
     >
       {columns.map((column, columnIndex) => (
-        <Column key={columnIndex} style={{ height: column.height }}>
+        <Column
+          key={columnIndex}
+          style={{ height: column.height }}
+          data-testid="masonry-column"
+        >
           {column.items.map(({ item, top, height }, index) => {
             const isVisible = isItemVisible({
               itemTop: top,
@@ -74,10 +78,12 @@ export const Masonry = <T extends MasonryItem>({
               containerHeight,
               containerScrollTop,
             });
+            const key = `${item.id}_${index + 1}`;
             return (
-              <Fragment key={`${item.id}_${index + 1}`}>
+              <Fragment key={key}>
                 {isVisible && (
                   <MasonryItemWrapper
+                    data-testid={`masonry-column-item-${key}`}
                     style={{
                       top,
                       height,
