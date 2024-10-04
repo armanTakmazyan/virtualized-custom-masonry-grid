@@ -11,5 +11,5 @@ export interface MasonryProps<T extends MasonryItem> {
   renderItem: (item: T) => ReactNode;
   gutter?: string;
   columnsCount?: number;
-  wrapperRef: ForwardedRef<HTMLDivElement>;
+  wrapperRef?: ForwardedRef<HTMLDivElement>;
 }
