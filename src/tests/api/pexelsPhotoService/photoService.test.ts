@@ -1,8 +1,8 @@
 import { vi, describe, it, expect } from 'vitest';
 import { pexelsClient } from '../../../api/pexelsClient';
 import {
-  FETCH_CURATED_PHOTOS_DEFAULT_ARGS,
   PEXELS_API_ROUTES,
+  FETCH_CURATED_PHOTOS_DEFAULT_ARGS,
 } from '../../../api/pexelsPhotoService/constants';
 import {
   fetchPexelsCuratedPhotos,
@@ -88,7 +88,10 @@ describe('Pexels API functions', () => {
         PEXELS_API_ROUTES.PHOTO_DETAILS(id),
       );
 
-      expect(result).toEqual(mockData);
+      expect(result).toEqual({
+        id,
+        photographer: 'John Doe',
+      });
     });
   });
 });

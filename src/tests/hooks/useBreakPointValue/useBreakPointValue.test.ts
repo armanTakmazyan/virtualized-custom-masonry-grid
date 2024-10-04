@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useBreakpointValue } from '../../hooks/useBreakpointValue';
+import { useBreakpointValue } from '../../../hooks/useBreakpointValue';
 
 const mocks = vi.hoisted(() => {
   return {
@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => {
   };
 });
 
-vi.mock('../../hooks/useWindowWidth', () => ({
+vi.mock('../../../hooks/useWindowWidth', () => ({
   useWindowWidth: mocks.useWindowWidth,
 }));
 
