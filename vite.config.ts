@@ -5,10 +5,10 @@ import type { UserConfig as VitestUserConfigInterface } from 'vitest/config';
 
 const vitestConfig: VitestUserConfigInterface = {
   test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './src/tests/setup.ts',
-  }
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.ts',
+  },
 };
 
 // https://vitejs.dev/config/
