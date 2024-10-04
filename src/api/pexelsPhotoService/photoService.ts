@@ -1,5 +1,10 @@
 import { pexelsClient } from '../pexelsClient';
-import { DEFAULT_PAGE, DEFAULT_PER_PAGE, PEXELS_API_ROUTES } from './constants';
+import {
+  DEFAULT_PAGE,
+  DEFAULT_PER_PAGE,
+  PEXELS_API_ROUTES,
+  FETCH_CURATED_PHOTOS_DEFAULT_ARGS,
+} from './constants';
 import {
   PexelsPhoto,
   PexelsResponse,
@@ -11,7 +16,7 @@ import {
 export const fetchPexelsCuratedPhotos: FetchPexelsCuratedPhotos = async ({
   page = DEFAULT_PAGE,
   perPage = DEFAULT_PER_PAGE,
-}) => {
+} = FETCH_CURATED_PHOTOS_DEFAULT_ARGS) => {
   const response = await pexelsClient.get<PexelsResponse>(
     PEXELS_API_ROUTES.CURATED,
     {

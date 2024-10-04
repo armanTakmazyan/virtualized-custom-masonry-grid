@@ -31,13 +31,13 @@ export interface FetchPexelsCuratedPhotosArgs {
 }
 
 export type FetchPexelsCuratedPhotos = (
-  args: FetchPexelsCuratedPhotosArgs,
+  args?: FetchPexelsCuratedPhotosArgs,
 ) => Promise<PexelsResponse>;
 
 export interface SearchPexelsPhotosArgs {
   query: string;
-  page: number;
-  perPage: number;
+  page?: number;
+  perPage?: number;
 }
 
 export type SearchPexelsPhotos = (
