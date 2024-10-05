@@ -1,50 +1,39 @@
-# React + TypeScript + Vite
+# Masonry Grid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for creating a virtualized masonry grid.
+For demonstration purposes, the Pexels API has been utilized. You can find the documentation at [Pexels API Documentation](https://www.pexels.com/api/documentation/).
 
-Currently, two official plugins are available:
+## Tools
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org/)
+- [Vitest](https://vitest.dev)
+- [React testing library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Styled Component](https://styled-components.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Ahooks](https://ahooks.js.org/hooks/use-request/index)
+- [Framer Motion](https://www.framer.com/motion/)
+- [EsLint](https://www.npmjs.com/package/eslint)
+- [Prettier](https://prettier.iot)
 
-## Expanding the ESLint configuration
+## Required Installations
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The following should be installed in your machine
 
-- Configure the top-level `parserOptions` property like this:
+- Node v20.17.0
+- Yarn v1.22.22
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## How to Install and Run the Application Locally
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1.  Clone the Git repository.
+2.  Rename `.env.example` to `.env`.
+3.  Add your access key by setting `VITE_PEXELS_API_KEY=` in the `.env` file.
+4.  Install all dependencies by running `yarn install`.
+5.  Start the application in development mode with `yarn dev`.
+6.  Run the tests by executing `yarn test`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## How I Optimized Performance
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1.  I used `React.lazy` for code-splitting and lazy loading with `react-router-dom`.
+2.  I applied memoization when needed (e.g., `useMemo`, `useCallback`, etc.).
+3.  I implemented Masonry Grid virtualization to remove offscreen elements from the DOM.
