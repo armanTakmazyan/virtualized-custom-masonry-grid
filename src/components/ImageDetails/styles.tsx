@@ -55,6 +55,8 @@ export const PhotographerUrl = styled.a`
   text-align: justify;
   text-decoration: none;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     color: #49aaff;
   }
