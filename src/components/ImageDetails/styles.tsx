@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -10,7 +10,6 @@ export const Container = styled.div`
 
 export const DetailsContainer = styled.div`
   width: 100%;
-  padding-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,13 +67,13 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    max-width: 100%;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    &:hover {
-      box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
-    }
+`;
+
+export const imageStyles = css`
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
   }
 `;
 
