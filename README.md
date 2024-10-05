@@ -1,7 +1,7 @@
 # Masonry Grid
 
 A React application for creating a virtualized masonry grid.
-For demonstration purposes, the Pexels API has been utilized. You can find the documentation at [Pexels API Documentation](https://www.pexels.com/api/documentation/).
+The Pexels API is used for demonstration purposes. You can find the documentation at the [Pexels API Documentation](https://www.pexels.com/api/documentation/).
 
 ## Tools
 
@@ -29,7 +29,7 @@ The following should be installed in your machine
 2.  Rename `.env.example` to `.env`.
 3.  Add your access key by setting `VITE_PEXELS_API_KEY=` in the `.env` file.
 4.  Install all dependencies by running `yarn install`.
-5.  Start the application in development mode with `yarn dev`.
+5.  Start the application in development mode with `yarn dev` (or build it by running `yarn build` followed by `yarn preview`).
 6.  Run the tests by executing `yarn test`.
 
 ## How I Optimized Performance
